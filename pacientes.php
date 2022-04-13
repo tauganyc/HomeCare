@@ -1,6 +1,9 @@
 <?php
 include_once "functions.php";
-seasonstartmedico();
+seasonstart();
+if($_SESSION["login"]["cliente"] != "medico"){
+    header("Location:index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,7 +17,7 @@ seasonstartmedico();
 </head>
 
 <body>
-    <div id="box" class="fodabox">
+<div id="box" class="fodabox">
         <?php
             $pacientes=loadpacientes();
             $_SESSION["pacientes"] = $pacientes;

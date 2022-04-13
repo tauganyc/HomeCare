@@ -1,5 +1,7 @@
 <?php
+unset($_SESSION);
 session_destroy();
+print_r($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -21,11 +23,8 @@ session_destroy();
 
         <span>Senha</span>
         <input id="password" name="password" class="text" type="password">
+        <input type="submit" value="Enviar" class="button">
         <?php
-
-        $button = '<input type="submit" value="Enviar" class="button">';
-        echo $button;
-
         include_once('functions.php');
         $output = "";
         if (isset($_POST["email"]) && isset($_POST["password"])) {
@@ -33,20 +32,17 @@ session_destroy();
             if ($conta != null and $_POST["email"] == $conta["email"]) {
                 if (password_verify($_POST["password"], $conta["password"])) {
                     session_start();
-                    $_SESSION["login"] = $conta;
-                    if ($conta["cliente"] == "medico") {
-                        header("Location: homemed.php");
-                    }
-                    //vai para o login do paciente
-                    else {
-                        header("Location: homepac.php");
-                    }
-                } else {
+                    $_SESSION=array();
+                    $_SESSION["login"]=$conta;
+                    header("Location: home.php");
+                }
+                else{
                     $output = "Senha inválida";
                 }
-            } else {
-                $output = "E-mail incorreto";
             }
+            elseif($_POST["email"]!=$conta["email"]) {
+                    $output = "E-mail incorreto";
+                }
         }
         echo $output;
         ?>
