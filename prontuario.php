@@ -1,6 +1,6 @@
 <?php
 include_once "functions.php";
-seasonstartmedico();
+seasonstart();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -32,7 +32,7 @@ seasonstartmedico();
         // Salvar prontuario
         $conta = addprontuario($conta, $_POST);
         unset($_SESSION["id"]);
-        header("Location: homemed.php");
+        header("Location: home.php");
     }    
     ?>
     <div id="box">
@@ -54,6 +54,7 @@ seasonstartmedico();
     </div>
     <div id="box">
         <h2>Dados Anteriores</h2>
+        <div class="scroll" style="overflow-y:scroll;height: 100%;">
         <?php
         for($i=0;$i<count($conta["prontuarios"][$i]);$i++){
             $pro = $conta["prontuarios"][$i];
@@ -64,6 +65,7 @@ seasonstartmedico();
             echo "<br></div>";
         }
         ?>
+        </div>
     </div>
 </body>
 

@@ -27,11 +27,12 @@ session_destroy();
 
         $button = '<input type="submit" value="Enviar" class="button">';
         echo $button;
+        if ($_POST == "") {
+            echo "selecione uma opção";
+        }
+        include_once('functions.php');
+        VerificaCliente()
 
-           // include('somos.php');
-            include_once('functions.php');
-            VerificaCliente()
-            
         ?>
     </form>
 </body>
