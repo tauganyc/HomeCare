@@ -65,6 +65,7 @@ date_default_timezone_set("Brazil/East");
             }
         }
         echo $output;
+        echo "oi";
         ?>
     </div>
 </body>
